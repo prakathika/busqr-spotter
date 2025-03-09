@@ -38,7 +38,8 @@ const QRScanner = () => {
       const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
       const randomBusId = busIds[Math.floor(Math.random() * busIds.length)];
       
-      const bus = await scanQRCode(`https://busqrapp.com/${randomBusId}`);
+      // Use the actual app URL format for scanning
+      const bus = await scanQRCode(`https://busqr-spotter.lovable.app/${randomBusId}`);
       saveRecentScan(randomBusId);
       
       toast({

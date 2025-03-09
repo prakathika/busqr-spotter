@@ -1,4 +1,3 @@
-
 // Mock bus data for demonstration
 export interface BusStop {
   id: string;
@@ -118,7 +117,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Premium AC Sleeper service from Chennai to Coimbatore. Comfortable overnight journey with modern amenities and experienced drivers.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqrapp.com/tnstc001'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc001'
   },
   'tnstc002': {
     id: 'tnstc002',
@@ -175,7 +174,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Regular Super Deluxe service connecting the pilgrim city of Madurai to the holy island of Rameswaram. Route includes crossing the famous Pamban Bridge.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqrapp.com/tnstc002'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc002'
   },
   'tnstc003': {
     id: 'tnstc003',
@@ -232,7 +231,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Special hill service bus connecting Coimbatore to the popular hill station of Ooty. Drivers are specially trained for navigating the 36 hairpin bends on this scenic route.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqrapp.com/tnstc003'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc003'
   },
   'tnstc004': {
     id: 'tnstc004',
@@ -289,7 +288,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Ultra deluxe service connecting the historical cities of Trichy and Thanjavur. Stops at the famous Srirangam temple en route.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqrapp.com/tnstc004'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc004'
   },
   'tnstc005': {
     id: 'tnstc005',
@@ -346,7 +345,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Special pilgrimage bus service connecting Chennai to the famous temple town of Tirupati. Extra frequency during weekends and festival seasons.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqrapp.com/tnstc005'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc005'
   }
 };
 
@@ -359,8 +358,7 @@ export const getBusById = (id: string): Bus | undefined => {
 export const scanQRCode = (qrValue: string): Promise<Bus | undefined> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // For demo purposes, we'll extract the ID from the QR code URL
-      // In a real scenario, the QR would be scanned and decoded to get the ID
+      // Extract bus ID from URL - supporting both /bus/id and direct /id patterns
       const parts = qrValue.split('/');
       const busId = parts[parts.length - 1];
       
@@ -415,9 +413,8 @@ export const saveRecentScan = (busId: string): void => {
 
 // Generate QR code URLs for each bus
 export const generateQRCodeUrl = (busId: string): string => {
-  // In a real app, you would use a QR code generation library here
-  // For demo purposes, we'll use a fake URL that leads to a QR code image
-  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://busqrapp.com/${busId}`)}`;
+  // Use our actual app URL for QR code generation
+  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://busqr-spotter.lovable.app/${busId}`)}`;
 };
 
 // Get all available buses
