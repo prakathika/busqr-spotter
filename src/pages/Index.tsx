@@ -22,10 +22,10 @@ const Index = () => {
         <header className="w-full max-w-md mx-auto mb-8 text-center">
           <div className="inline-flex items-center justify-center space-x-2 mb-2">
             <Bus className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold">BusQR Spotter</h1>
+            <h1 className="text-2xl font-bold">TNSTC BusQR</h1>
           </div>
           <p className="text-muted-foreground text-sm max-w-xs mx-auto">
-            Scan any bus QR code to see complete route, schedule and driver information
+            Scan any Tamilnadu State Transport bus QR code to see complete route, schedule and driver information
           </p>
         </header>
 

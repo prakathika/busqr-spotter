@@ -1,3 +1,4 @@
+
 // Mock bus data for demonstration
 export interface BusStop {
   id: string;
@@ -40,208 +41,312 @@ export interface Bus {
   description: string;
   status: 'active' | 'delayed' | 'outOfService';
   lastUpdated: string;
+  qrCodeValue: string; // Added field for QR code
 }
 
 // Mock image URLs
 const mockImages = [
-  'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2940&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2940&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?q=80&w=2940&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1562613137-3a4102eb95d2?q=80&w=2894&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1563115298-e9519ae1b366?q=80&w=2940&auto=format&fit=crop',
 ];
 
 // Mock driver image URL
 const mockDriverImage = 'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=2940&auto=format&fit=crop';
 
-// Create sample mock data
+// Create Tamilnadu bus data
 export const mockBuses: Record<string, Bus> = {
-  'bus001': {
-    id: 'bus001',
-    busNumber: 'RT-1045',
+  'tnstc001': {
+    id: 'tnstc001',
+    busNumber: 'TN 01 N 3456',
     route: {
       id: 'route1',
-      name: 'Downtown Express',
+      name: 'Chennai - Coimbatore',
       stops: [
         {
           id: 'stop1',
-          name: 'Central Terminal',
-          arrivalTime: '08:00',
-          departureTime: '08:10',
-          location: { lat: 40.7128, lng: -74.006 }
+          name: 'Chennai CMBT',
+          arrivalTime: '21:00',
+          departureTime: '21:30',
+          location: { lat: 13.0702, lng: 80.1952 }
         },
         {
           id: 'stop2',
-          name: 'Business District',
-          arrivalTime: '08:30',
-          departureTime: '08:35',
-          location: { lat: 40.7138, lng: -74.013 }
+          name: 'Kanchipuram',
+          arrivalTime: '22:45',
+          departureTime: '22:50',
+          location: { lat: 12.8342, lng: 79.7036 }
         },
         {
           id: 'stop3',
-          name: 'Market Square',
-          arrivalTime: '08:55',
-          departureTime: '09:00',
-          location: { lat: 40.7148, lng: -74.023 }
+          name: 'Vellore',
+          arrivalTime: '00:15',
+          departureTime: '00:25',
+          location: { lat: 12.9165, lng: 79.1325 }
         },
         {
           id: 'stop4',
-          name: 'Tech Park',
-          arrivalTime: '09:20',
-          departureTime: '09:25',
-          location: { lat: 40.7158, lng: -74.033 }
+          name: 'Salem',
+          arrivalTime: '03:30',
+          departureTime: '03:45',
+          location: { lat: 11.6643, lng: 78.1460 }
         },
         {
           id: 'stop5',
-          name: 'University Campus',
-          arrivalTime: '09:45',
-          departureTime: '09:50',
-          location: { lat: 40.7168, lng: -74.043 }
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '06:30',
+          departureTime: '06:40',
+          location: { lat: 11.0168, lng: 76.9558 }
         }
       ]
     },
     driver: {
       id: 'driver1',
-      name: 'Michael Johnson',
-      contactNumber: '(555) 123-4567',
-      experience: '8 years',
+      name: 'Murugan Senthil',
+      contactNumber: '94421-56789',
+      experience: '12 years',
       image: mockDriverImage
     },
-    busType: 'Electric',
-    capacity: 45,
-    amenities: ['Wi-Fi', 'USB Charging', 'Air Conditioning', 'Accessibility Ramp'],
+    busType: 'AC Sleeper',
+    capacity: 40,
+    amenities: ['USB Charging', 'Air Conditioning', 'Blankets', 'Water Bottle'],
     images: mockImages,
     schedule: {
-      weekday: ['6:00', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
-      weekend: ['8:00', '12:00', '16:00', '20:00']
+      weekday: ['21:30', '22:00', '22:30'],
+      weekend: ['20:00', '21:30', '23:00']
     },
-    description: 'The Downtown Express provides efficient service connecting residential areas to the business district. This modern electric bus offers comfort and amenities for your commute.',
+    description: 'Premium AC Sleeper service from Chennai to Coimbatore. Comfortable overnight journey with modern amenities and experienced drivers.',
     status: 'active',
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqrapp.com/tnstc001'
   },
-  'bus002': {
-    id: 'bus002',
-    busNumber: 'RT-2089',
+  'tnstc002': {
+    id: 'tnstc002',
+    busNumber: 'TN 38 N 7892',
     route: {
       id: 'route2',
-      name: 'Coastal Route',
+      name: 'Madurai - Rameswaram',
       stops: [
         {
           id: 'stop6',
-          name: 'Harbor Terminal',
-          arrivalTime: '07:30',
-          departureTime: '07:40',
-          location: { lat: 40.7228, lng: -74.106 }
+          name: 'Madurai Mattuthavani',
+          arrivalTime: '09:00',
+          departureTime: '09:15',
+          location: { lat: 9.9252, lng: 78.1198 }
         },
         {
           id: 'stop7',
-          name: 'Bayside Park',
-          arrivalTime: '08:00',
-          departureTime: '08:05',
-          location: { lat: 40.7238, lng: -74.113 }
+          name: 'Ramanathapuram',
+          arrivalTime: '11:30',
+          departureTime: '11:40',
+          location: { lat: 9.3639, lng: 78.8395 }
         },
         {
           id: 'stop8',
-          name: 'Marina View',
-          arrivalTime: '08:25',
-          departureTime: '08:30',
-          location: { lat: 40.7248, lng: -74.123 }
+          name: 'Pamban Bridge',
+          arrivalTime: '12:30',
+          departureTime: '12:35',
+          location: { lat: 9.2796, lng: 79.2162 }
         },
         {
           id: 'stop9',
-          name: 'Ocean Boulevard',
-          arrivalTime: '08:50',
-          departureTime: '08:55',
-          location: { lat: 40.7258, lng: -74.133 }
-        },
-        {
-          id: 'stop10',
-          name: 'Beach Resort',
-          arrivalTime: '09:15',
-          departureTime: '09:20',
-          location: { lat: 40.7268, lng: -74.143 }
+          name: 'Rameswaram Temple',
+          arrivalTime: '13:00',
+          departureTime: '13:10',
+          location: { lat: 9.2876, lng: 79.3129 }
         }
       ]
     },
     driver: {
       id: 'driver2',
-      name: 'Sarah Williams',
-      contactNumber: '(555) 987-6543',
-      experience: '5 years',
+      name: 'Selvam Raja',
+      contactNumber: '96775-43210',
+      experience: '8 years',
       image: mockDriverImage
     },
-    busType: 'Hybrid',
-    capacity: 38,
-    amenities: ['Wi-Fi', 'Panoramic Windows', 'Air Conditioning', 'Bicycle Rack'],
+    busType: 'Super Deluxe',
+    capacity: 54,
+    amenities: ['Wi-Fi', 'Reading Light', 'Comfortable Seating', 'Emergency Exit'],
     images: mockImages,
     schedule: {
-      weekday: ['7:00', '9:00', '11:00', '13:00', '15:00', '17:00', '19:00'],
-      weekend: ['9:00', '13:00', '17:00', '21:00']
+      weekday: ['09:15', '13:30', '17:45'],
+      weekend: ['08:15', '12:30', '16:45']
     },
-    description: 'The Coastal Route offers scenic travel along the waterfront districts. Enjoy beautiful views and comfortable amenities on this eco-friendly hybrid bus.',
+    description: 'Regular Super Deluxe service connecting the pilgrim city of Madurai to the holy island of Rameswaram. Route includes crossing the famous Pamban Bridge.',
     status: 'active',
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqrapp.com/tnstc002'
   },
-  'bus003': {
-    id: 'bus003',
-    busNumber: 'RT-3567',
+  'tnstc003': {
+    id: 'tnstc003',
+    busNumber: 'TN 43 X 5123',
     route: {
       id: 'route3',
-      name: 'Mountain Explorer',
+      name: 'Coimbatore - Ooty',
       stops: [
         {
+          id: 'stop10',
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '08:00',
+          departureTime: '08:15',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
           id: 'stop11',
-          name: 'Valley Station',
-          arrivalTime: '06:45',
-          departureTime: '06:55',
-          location: { lat: 40.7328, lng: -74.206 }
+          name: 'Mettupalayam',
+          arrivalTime: '09:30',
+          departureTime: '09:40',
+          location: { lat: 11.2990, lng: 76.9366 }
         },
         {
           id: 'stop12',
-          name: 'Hillside Avenue',
-          arrivalTime: '07:15',
-          departureTime: '07:20',
-          location: { lat: 40.7338, lng: -74.213 }
+          name: 'Coonoor',
+          arrivalTime: '11:15',
+          departureTime: '11:25',
+          location: { lat: 11.3530, lng: 76.7959 }
         },
         {
           id: 'stop13',
-          name: 'Mountain View',
-          arrivalTime: '07:45',
-          departureTime: '07:50',
-          location: { lat: 40.7348, lng: -74.223 }
-        },
-        {
-          id: 'stop14',
-          name: 'Summit Center',
-          arrivalTime: '08:15',
-          departureTime: '08:20',
-          location: { lat: 40.7358, lng: -74.233 }
-        },
-        {
-          id: 'stop15',
-          name: 'Park Entrance',
-          arrivalTime: '08:45',
-          departureTime: '08:50',
-          location: { lat: 40.7368, lng: -74.243 }
+          name: 'Ooty Bus Stand',
+          arrivalTime: '12:30',
+          departureTime: '12:45',
+          location: { lat: 11.4102, lng: 76.6950 }
         }
       ]
     },
     driver: {
       id: 'driver3',
-      name: 'David Chen',
-      contactNumber: '(555) 456-7890',
-      experience: '12 years',
+      name: 'Karthik Subramani',
+      contactNumber: '98432-12345',
+      experience: '15 years',
       image: mockDriverImage
     },
-    busType: 'Standard',
-    capacity: 42,
-    amenities: ['Luggage Space', 'Wi-Fi', 'Air Conditioning', 'Panoramic Roof'],
+    busType: 'Hill Service',
+    capacity: 32,
+    amenities: ['Heating', 'First Aid Kit', 'Extra Luggage Space', 'Oxygen Supply'],
     images: mockImages,
     schedule: {
-      weekday: ['6:30', '8:30', '10:30', '12:30', '14:30', '16:30', '18:30'],
-      weekend: ['8:30', '10:30', '14:30', '16:30', '18:30']
+      weekday: ['08:15', '12:30', '16:45'],
+      weekend: ['07:15', '11:30', '15:45']
     },
-    description: 'The Mountain Explorer connects urban areas to the natural park region. Designed for comfort during longer journeys with extra luggage space for outdoor equipment.',
+    description: 'Special hill service bus connecting Coimbatore to the popular hill station of Ooty. Drivers are specially trained for navigating the 36 hairpin bends on this scenic route.',
     status: 'active',
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqrapp.com/tnstc003'
+  },
+  'tnstc004': {
+    id: 'tnstc004',
+    busNumber: 'TN 19 G 3678',
+    route: {
+      id: 'route4',
+      name: 'Trichy - Thanjavur',
+      stops: [
+        {
+          id: 'stop14',
+          name: 'Trichy Central',
+          arrivalTime: '14:00',
+          departureTime: '14:15',
+          location: { lat: 10.7905, lng: 78.7047 }
+        },
+        {
+          id: 'stop15',
+          name: 'Srirangam',
+          arrivalTime: '14:40',
+          departureTime: '14:45',
+          location: { lat: 10.8624, lng: 78.6974 }
+        },
+        {
+          id: 'stop16',
+          name: 'Thiruverumbur',
+          arrivalTime: '15:10',
+          departureTime: '15:15',
+          location: { lat: 10.7905, lng: 78.7672 }
+        },
+        {
+          id: 'stop17',
+          name: 'Thanjavur Old Bus Stand',
+          arrivalTime: '16:00',
+          departureTime: '16:10',
+          location: { lat: 10.7869, lng: 79.1378 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver4',
+      name: 'Gopal Krishnan',
+      contactNumber: '94875-67890',
+      experience: '9 years',
+      image: mockDriverImage
+    },
+    busType: 'Ultra Deluxe',
+    capacity: 48,
+    amenities: ['Push-back Seats', 'LCD TV', 'Free Wi-Fi', 'Newspaper'],
+    images: mockImages,
+    schedule: {
+      weekday: ['07:15', '10:15', '14:15', '18:15'],
+      weekend: ['08:15', '12:15', '16:15', '20:15']
+    },
+    description: 'Ultra deluxe service connecting the historical cities of Trichy and Thanjavur. Stops at the famous Srirangam temple en route.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqrapp.com/tnstc004'
+  },
+  'tnstc005': {
+    id: 'tnstc005',
+    busNumber: 'TN 69 Z 2341',
+    route: {
+      id: 'route5',
+      name: 'Chennai - Tirupati',
+      stops: [
+        {
+          id: 'stop18',
+          name: 'Chennai Koyambedu',
+          arrivalTime: '06:00',
+          departureTime: '06:15',
+          location: { lat: 13.0702, lng: 80.1952 }
+        },
+        {
+          id: 'stop19',
+          name: 'Tiruvallur',
+          arrivalTime: '07:15',
+          departureTime: '07:20',
+          location: { lat: 13.1429, lng: 79.9120 }
+        },
+        {
+          id: 'stop20',
+          name: 'Tiruttani',
+          arrivalTime: '08:15',
+          departureTime: '08:25',
+          location: { lat: 13.1784, lng: 79.6369 }
+        },
+        {
+          id: 'stop21',
+          name: 'Tirupati Bus Stand',
+          arrivalTime: '10:30',
+          departureTime: '10:45',
+          location: { lat: 13.6288, lng: 79.4192 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver5',
+      name: 'Venkatesh Kumar',
+      contactNumber: '89256-34567',
+      experience: '11 years',
+      image: mockDriverImage
+    },
+    busType: 'Pilgrimage Special',
+    capacity: 56,
+    amenities: ['Religious Music', 'Prayer Space', 'Water Dispenser', 'Comfortable Seating'],
+    images: mockImages,
+    schedule: {
+      weekday: ['06:15', '12:15', '18:15'],
+      weekend: ['05:15', '08:15', '11:15', '14:15', '17:15']
+    },
+    description: 'Special pilgrimage bus service connecting Chennai to the famous temple town of Tirupati. Extra frequency during weekends and festival seasons.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqrapp.com/tnstc005'
   }
 };
 
@@ -254,7 +359,12 @@ export const getBusById = (id: string): Bus | undefined => {
 export const scanQRCode = (qrValue: string): Promise<Bus | undefined> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const bus = getBusById(qrValue);
+      // For demo purposes, we'll extract the ID from the QR code URL
+      // In a real scenario, the QR would be scanned and decoded to get the ID
+      const parts = qrValue.split('/');
+      const busId = parts[parts.length - 1];
+      
+      const bus = getBusById(busId);
       if (bus) {
         resolve(bus);
       } else {
@@ -301,4 +411,16 @@ export const saveRecentScan = (busId: string): void => {
   } catch (error) {
     console.error('Error saving recent scan:', error);
   }
+};
+
+// Generate QR code URLs for each bus
+export const generateQRCodeUrl = (busId: string): string => {
+  // In a real app, you would use a QR code generation library here
+  // For demo purposes, we'll use a fake URL that leads to a QR code image
+  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://busqrapp.com/${busId}`)}`;
+};
+
+// Get all available buses
+export const getAllBuses = (): Bus[] => {
+  return Object.values(mockBuses);
 };

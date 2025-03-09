@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { scanQRCode, saveRecentScan } from '../utils/busData';
 import { toast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
-import { Loader2, ScanLine } from 'lucide-react';
+import { Loader2, ScanLine, QrCode } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const QRScanner = () => {
   const navigate = useNavigate();
@@ -34,10 +35,10 @@ const QRScanner = () => {
   const simulateScan = async () => {
     try {
       // Randomly select one of our mock buses for demo
-      const busIds = ['bus001', 'bus002', 'bus003'];
+      const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
       const randomBusId = busIds[Math.floor(Math.random() * busIds.length)];
       
-      const bus = await scanQRCode(randomBusId);
+      const bus = await scanQRCode(`https://busqrapp.com/${randomBusId}`);
       saveRecentScan(randomBusId);
       
       toast({
@@ -103,8 +104,17 @@ const QRScanner = () => {
         </Button>
         
         <p className="text-sm text-center text-muted-foreground max-w-xs">
-          Scan the QR code on any public bus to view complete information about its route, schedule, and driver details.
+          Scan the QR code on any TNSTC bus to view complete information about its route, schedule, and driver details.
         </p>
+        
+        <div className="w-full max-w-xs">
+          <Link to="/qrcodes">
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+              <QrCode className="h-4 w-4" />
+              View Available QR Codes
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

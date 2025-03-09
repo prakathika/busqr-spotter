@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import BusInfo from "./pages/BusInfo";
+import QRCodes from "./pages/QRCodes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/bus/:id" element={<BusInfo />} />
+            <Route path="/qrcodes" element={<QRCodes />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
