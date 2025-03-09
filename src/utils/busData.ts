@@ -1,3 +1,4 @@
+
 // Mock bus data for demonstration
 export interface BusStop {
   id: string;
@@ -43,15 +44,43 @@ export interface Bus {
   qrCodeValue: string; // Added field for QR code
 }
 
-// Mock image URLs
-const mockImages = [
-  'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2940&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1562613137-3a4102eb95d2?q=80&w=2894&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1563115298-e9519ae1b366?q=80&w=2940&auto=format&fit=crop',
-];
+// Different bus images for each bus
+const busImages = {
+  tnstc001: [
+    'https://images.unsplash.com/photo-1591635566278-10dca0ca76ee?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1561361513-2d000a50f2ef?q=80&w=2676&auto=format&fit=crop',
+  ],
+  tnstc002: [
+    'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=2864&auto=format&fit=crop',
+  ],
+  tnstc003: [
+    'https://images.unsplash.com/photo-1569158226571-4a01aa1a97af?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1562613137-3a4102eb95d2?q=80&w=2894&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1478222642985-a60e937ff593?q=80&w=2940&auto=format&fit=crop',
+  ],
+  tnstc004: [
+    'https://images.unsplash.com/photo-1586336902201-ce3c472cec11?q=80&w=2787&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1563115298-e9519ae1b366?q=80&w=2940&auto=format&fit=crop',
+  ],
+  tnstc005: [
+    'https://images.unsplash.com/photo-1548345886-68c39fc74df4?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1556122071-e404cb8e06b3?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1582560486650-5329af87b090?q=80&w=2940&auto=format&fit=crop',
+  ],
+};
 
-// Mock driver image URL
-const mockDriverImage = 'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=2940&auto=format&fit=crop';
+// Different driver images
+const driverImages = [
+  'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=2940&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1504257432389-52343af06ae3?q=80&w=2787&auto=format&fit=crop',
+];
 
 // Create Tamilnadu bus data
 export const mockBuses: Record<string, Bus> = {
@@ -104,12 +133,12 @@ export const mockBuses: Record<string, Bus> = {
       name: 'Murugan Senthil',
       contactNumber: '94421-56789',
       experience: '12 years',
-      image: mockDriverImage
+      image: driverImages[0]
     },
     busType: 'AC Sleeper',
     capacity: 40,
     amenities: ['USB Charging', 'Air Conditioning', 'Blankets', 'Water Bottle'],
-    images: mockImages,
+    images: busImages.tnstc001,
     schedule: {
       weekday: ['21:30', '22:00', '22:30'],
       weekend: ['20:00', '21:30', '23:00']
@@ -117,7 +146,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Premium AC Sleeper service from Chennai to Coimbatore. Comfortable overnight journey with modern amenities and experienced drivers.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc001'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc001'
   },
   'tnstc002': {
     id: 'tnstc002',
@@ -161,12 +190,12 @@ export const mockBuses: Record<string, Bus> = {
       name: 'Selvam Raja',
       contactNumber: '96775-43210',
       experience: '8 years',
-      image: mockDriverImage
+      image: driverImages[1]
     },
     busType: 'Super Deluxe',
     capacity: 54,
     amenities: ['Wi-Fi', 'Reading Light', 'Comfortable Seating', 'Emergency Exit'],
-    images: mockImages,
+    images: busImages.tnstc002,
     schedule: {
       weekday: ['09:15', '13:30', '17:45'],
       weekend: ['08:15', '12:30', '16:45']
@@ -174,7 +203,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Regular Super Deluxe service connecting the pilgrim city of Madurai to the holy island of Rameswaram. Route includes crossing the famous Pamban Bridge.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc002'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc002'
   },
   'tnstc003': {
     id: 'tnstc003',
@@ -218,12 +247,12 @@ export const mockBuses: Record<string, Bus> = {
       name: 'Karthik Subramani',
       contactNumber: '98432-12345',
       experience: '15 years',
-      image: mockDriverImage
+      image: driverImages[2]
     },
     busType: 'Hill Service',
     capacity: 32,
     amenities: ['Heating', 'First Aid Kit', 'Extra Luggage Space', 'Oxygen Supply'],
-    images: mockImages,
+    images: busImages.tnstc003,
     schedule: {
       weekday: ['08:15', '12:30', '16:45'],
       weekend: ['07:15', '11:30', '15:45']
@@ -231,7 +260,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Special hill service bus connecting Coimbatore to the popular hill station of Ooty. Drivers are specially trained for navigating the 36 hairpin bends on this scenic route.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc003'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc003'
   },
   'tnstc004': {
     id: 'tnstc004',
@@ -275,12 +304,12 @@ export const mockBuses: Record<string, Bus> = {
       name: 'Gopal Krishnan',
       contactNumber: '94875-67890',
       experience: '9 years',
-      image: mockDriverImage
+      image: driverImages[3]
     },
     busType: 'Ultra Deluxe',
     capacity: 48,
     amenities: ['Push-back Seats', 'LCD TV', 'Free Wi-Fi', 'Newspaper'],
-    images: mockImages,
+    images: busImages.tnstc004,
     schedule: {
       weekday: ['07:15', '10:15', '14:15', '18:15'],
       weekend: ['08:15', '12:15', '16:15', '20:15']
@@ -288,7 +317,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Ultra deluxe service connecting the historical cities of Trichy and Thanjavur. Stops at the famous Srirangam temple en route.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc004'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc004'
   },
   'tnstc005': {
     id: 'tnstc005',
@@ -332,12 +361,12 @@ export const mockBuses: Record<string, Bus> = {
       name: 'Venkatesh Kumar',
       contactNumber: '89256-34567',
       experience: '11 years',
-      image: mockDriverImage
+      image: driverImages[4]
     },
     busType: 'Pilgrimage Special',
     capacity: 56,
     amenities: ['Religious Music', 'Prayer Space', 'Water Dispenser', 'Comfortable Seating'],
-    images: mockImages,
+    images: busImages.tnstc005,
     schedule: {
       weekday: ['06:15', '12:15', '18:15'],
       weekend: ['05:15', '08:15', '11:15', '14:15', '17:15']
@@ -345,7 +374,7 @@ export const mockBuses: Record<string, Bus> = {
     description: 'Special pilgrimage bus service connecting Chennai to the famous temple town of Tirupati. Extra frequency during weekends and festival seasons.',
     status: 'active',
     lastUpdated: new Date().toISOString(),
-    qrCodeValue: 'https://busqr-spotter.lovable.app/tnstc005'
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc005'
   }
 };
 
@@ -358,7 +387,7 @@ export const getBusById = (id: string): Bus | undefined => {
 export const scanQRCode = (qrValue: string): Promise<Bus | undefined> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Extract bus ID from URL - supporting both /bus/id and direct /id patterns
+      // Extract bus ID from URL - supporting both /bus/id patterns
       const parts = qrValue.split('/');
       const busId = parts[parts.length - 1];
       
@@ -411,10 +440,10 @@ export const saveRecentScan = (busId: string): void => {
   }
 };
 
-// Generate QR code URLs for each bus
+// Generate QR code URLs for each bus - using the correct URL format with /bus/ in the path
 export const generateQRCodeUrl = (busId: string): string => {
-  // Use our actual app URL for QR code generation
-  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://busqr-spotter.lovable.app/${busId}`)}`;
+  // Use our actual app URL for QR code generation with the correct format
+  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://busqr-spotter.lovable.app/bus/${busId}`)}`;
 };
 
 // Get all available buses

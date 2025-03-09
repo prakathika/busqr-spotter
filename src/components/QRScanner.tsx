@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { scanQRCode, saveRecentScan } from '../utils/busData';
 import { toast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
-import { Loader2, ScanLine, QrCode } from 'lucide-react';
+import { Loader2, ScanLine, QrCode, Upload } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const QRScanner = () => {
   const navigate = useNavigate();
   const [isScanning, setIsScanning] = useState(false);
   const [countdown, setCountdown] = useState(0);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<number | null>(null);
 
   const handleScan = async () => {
@@ -38,8 +39,8 @@ const QRScanner = () => {
       const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
       const randomBusId = busIds[Math.floor(Math.random() * busIds.length)];
       
-      // Use the actual app URL format for scanning
-      const bus = await scanQRCode(`https://busqr-spotter.lovable.app/${randomBusId}`);
+      // Use the proper URL format for scanning (include /bus/ in the path)
+      const bus = await scanQRCode(`https://busqr-spotter.lovable.app/bus/${randomBusId}`);
       saveRecentScan(randomBusId);
       
       toast({
@@ -60,6 +61,52 @@ const QRScanner = () => {
     } finally {
       setIsScanning(false);
     }
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // In a real app, we would use a library to decode the QR code from the image
+    // For demo purposes, we'll simulate the QR code detection
+    
+    setIsScanning(true);
+    
+    setTimeout(() => {
+      try {
+        // Randomly select one of our mock buses for demo
+        const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
+        const randomBusId = busIds[Math.floor(Math.random() * busIds.length)];
+        
+        saveRecentScan(randomBusId);
+        
+        toast({
+          title: "QR Code Uploaded",
+          description: `Successfully processed QR code`,
+          duration: 3000,
+        });
+        
+        // Navigate to bus details page
+        navigate(`/bus/${randomBusId}`);
+      } catch (error) {
+        toast({
+          title: "Upload Failed",
+          description: "Unable to process QR code from image",
+          variant: "destructive",
+          duration: 3000,
+        });
+      } finally {
+        setIsScanning(false);
+        // Reset file input
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+      }
+    }, 1500);
+  };
+
+  const triggerFileUpload = () => {
+    fileInputRef.current?.click();
   };
 
   useEffect(() => {
@@ -90,19 +137,38 @@ const QRScanner = () => {
           )}
         </div>
         
-        <Button
-          onClick={handleScan}
-          disabled={isScanning}
-          className="w-full max-w-xs transition-all duration-300 bg-primary hover:bg-primary/90 text-white font-medium py-6 rounded-xl shadow-lg"
-        >
-          {isScanning ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Scanning...
-            </>
-          ) : (
-            "Scan QR Code"
-          )}
-        </Button>
+        <div className="w-full flex gap-2">
+          <Button
+            onClick={handleScan}
+            disabled={isScanning}
+            className="flex-1 transition-all duration-300 bg-primary hover:bg-primary/90 text-white font-medium py-6 rounded-xl shadow-lg"
+          >
+            {isScanning ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Scanning...
+              </>
+            ) : (
+              "Scan QR Code"
+            )}
+          </Button>
+          
+          <Button
+            onClick={triggerFileUpload}
+            disabled={isScanning}
+            variant="outline"
+            className="flex-1 transition-all duration-300 font-medium py-6 rounded-xl shadow-lg"
+          >
+            <Upload className="mr-2 h-4 w-4" /> Upload QR
+          </Button>
+          
+          <input 
+            type="file" 
+            ref={fileInputRef} 
+            className="hidden"
+            accept="image/*"
+            onChange={handleFileUpload}
+          />
+        </div>
         
         <p className="text-sm text-center text-muted-foreground max-w-xs">
           Scan the QR code on any TNSTC bus to view complete information about its route, schedule, and driver details.
