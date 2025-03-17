@@ -1,3 +1,4 @@
+
 // Mock bus data for demonstration
 export interface BusStop {
   id: string;
@@ -520,3 +521,527 @@ export const mockBuses: Record<string, Bus> = {
           id: 'stop28',
           name: 'Kinathukadavu',
           arrivalTime: '08:50',
+          departureTime: '08:55',
+          location: { lat: 10.8236, lng: 77.0092 }
+        },
+        {
+          id: 'stop29',
+          name: 'Pollachi Bus Stand',
+          arrivalTime: '09:30',
+          departureTime: '09:45',
+          location: { lat: 10.6586, lng: 77.0087 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver7',
+      name: 'Raj Kumar',
+      contactNumber: '87654-32109',
+      experience: '7 years',
+      image: driverImages[6]
+    },
+    busType: 'Standard',
+    capacity: 48,
+    amenities: ['Comfortable Seating', 'Fan', 'Emergency Exit'],
+    images: busImages.tnstc007,
+    schedule: {
+      weekday: ['07:45', '09:45', '11:45', '13:45', '15:45', '17:45'],
+      weekend: ['08:45', '10:45', '12:45', '14:45', '16:45', '18:45']
+    },
+    description: 'Regular service connecting Coimbatore city to the agricultural town of Pollachi. Frequent daily departures.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc007'
+  },
+  'tnstc008': {
+    id: 'tnstc008',
+    busNumber: 'TN 43 AE 5678',
+    route: {
+      id: 'route8',
+      name: 'Coimbatore - Erode',
+      stops: [
+        {
+          id: 'stop30',
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '10:00',
+          departureTime: '10:15',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
+          id: 'stop31',
+          name: 'Avinashi',
+          arrivalTime: '11:00',
+          departureTime: '11:05',
+          location: { lat: 11.1734, lng: 77.2681 }
+        },
+        {
+          id: 'stop32',
+          name: 'Perundurai',
+          arrivalTime: '11:45',
+          departureTime: '11:50',
+          location: { lat: 11.2768, lng: 77.5830 }
+        },
+        {
+          id: 'stop33',
+          name: 'Erode Central Bus Stand',
+          arrivalTime: '12:30',
+          departureTime: '12:45',
+          location: { lat: 11.3410, lng: 77.7172 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver8',
+      name: 'Saravanan M',
+      contactNumber: '76543-21098',
+      experience: '10 years',
+      image: driverImages[7]
+    },
+    busType: 'Super Express',
+    capacity: 50,
+    amenities: ['Push-back Seats', 'Reading Light', 'Mobile Charging', 'Water Bottle'],
+    images: busImages.tnstc008,
+    schedule: {
+      weekday: ['06:15', '08:15', '10:15', '12:15', '14:15', '16:15', '18:15'],
+      weekend: ['07:15', '09:15', '11:15', '13:15', '15:15', '17:15', '19:15']
+    },
+    description: 'Super express service connecting Coimbatore to the textile city of Erode. Limited stops for faster journey.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc008'
+  },
+  'tnstc009': {
+    id: 'tnstc009',
+    busNumber: 'TN 43 BC 9012',
+    route: {
+      id: 'route9',
+      name: 'Coimbatore - Palani',
+      stops: [
+        {
+          id: 'stop34',
+          name: 'Coimbatore Singanallur',
+          arrivalTime: '09:30',
+          departureTime: '09:45',
+          location: { lat: 11.0089, lng: 77.0320 }
+        },
+        {
+          id: 'stop35',
+          name: 'Pollachi',
+          arrivalTime: '11:00',
+          departureTime: '11:10',
+          location: { lat: 10.6586, lng: 77.0087 }
+        },
+        {
+          id: 'stop36',
+          name: 'Udumalpet',
+          arrivalTime: '12:00',
+          departureTime: '12:10',
+          location: { lat: 10.5828, lng: 77.2510 }
+        },
+        {
+          id: 'stop37',
+          name: 'Palani Temple Bus Stop',
+          arrivalTime: '13:30',
+          departureTime: '13:45',
+          location: { lat: 10.4509, lng: 77.5120 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver9',
+      name: 'Manikandan K',
+      contactNumber: '65432-10987',
+      experience: '9 years',
+      image: driverImages[8]
+    },
+    busType: 'Pilgrimage Special',
+    capacity: 54,
+    amenities: ['Push-back Seats', 'Religious Music', 'Water Dispenser', 'Prayer Space'],
+    images: busImages.tnstc009,
+    schedule: {
+      weekday: ['09:45', '13:45', '17:45'],
+      weekend: ['07:45', '09:45', '11:45', '13:45', '15:45', '17:45', '19:45']
+    },
+    description: 'Special pilgrimage service connecting Coimbatore to the famous temple town of Palani. Extra frequency during weekends and festival seasons.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc009'
+  },
+  'tnstc010': {
+    id: 'tnstc010',
+    busNumber: 'TN 43 S 3456',
+    route: {
+      id: 'route10',
+      name: 'Coimbatore - Salem',
+      stops: [
+        {
+          id: 'stop38',
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '14:00',
+          departureTime: '14:15',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
+          id: 'stop39',
+          name: 'Avinashi',
+          arrivalTime: '15:00',
+          departureTime: '15:05',
+          location: { lat: 11.1734, lng: 77.2681 }
+        },
+        {
+          id: 'stop40',
+          name: 'Bhavani',
+          arrivalTime: '16:15',
+          departureTime: '16:20',
+          location: { lat: 11.4500, lng: 77.6833 }
+        },
+        {
+          id: 'stop41',
+          name: 'Salem New Bus Stand',
+          arrivalTime: '17:45',
+          departureTime: '18:00',
+          location: { lat: 11.6643, lng: 78.1460 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver10',
+      name: 'Prakash R',
+      contactNumber: '54321-09876',
+      experience: '11 years',
+      image: driverImages[9]
+    },
+    busType: 'Ultra Deluxe',
+    capacity: 48,
+    amenities: ['Air Conditioning', 'Push-back Seats', 'TV', 'USB Charging', 'Wi-Fi'],
+    images: busImages.tnstc010,
+    schedule: {
+      weekday: ['06:15', '10:15', '14:15', '18:15'],
+      weekend: ['08:15', '12:15', '16:15', '20:15']
+    },
+    description: 'Ultra deluxe service connecting Coimbatore to Salem. Comfortable journey with all modern amenities.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc010'
+  },
+  'tnstc011': {
+    id: 'tnstc011',
+    busNumber: 'TN 43 M 7890',
+    route: {
+      id: 'route11',
+      name: 'Coimbatore - Madurai',
+      stops: [
+        {
+          id: 'stop42',
+          name: 'Coimbatore Ukkadam',
+          arrivalTime: '20:00',
+          departureTime: '20:15',
+          location: { lat: 10.9925, lng: 76.9608 }
+        },
+        {
+          id: 'stop43',
+          name: 'Pollachi',
+          arrivalTime: '21:30',
+          departureTime: '21:40',
+          location: { lat: 10.6586, lng: 77.0087 }
+        },
+        {
+          id: 'stop44',
+          name: 'Dindigul',
+          arrivalTime: '00:00',
+          departureTime: '00:10',
+          location: { lat: 10.3624, lng: 77.9695 }
+        },
+        {
+          id: 'stop45',
+          name: 'Madurai Periyar Bus Stand',
+          arrivalTime: '02:00',
+          departureTime: '02:15',
+          location: { lat: 9.9252, lng: 78.1198 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver11',
+      name: 'Ramesh Kannan',
+      contactNumber: '43210-98765',
+      experience: '14 years',
+      image: driverImages[10]
+    },
+    busType: 'AC Sleeper',
+    capacity: 36,
+    amenities: ['Air Conditioning', 'Sleeper Berths', 'Blankets', 'Reading Light', 'USB Charging'],
+    images: busImages.tnstc011,
+    schedule: {
+      weekday: ['20:15', '21:30'],
+      weekend: ['19:15', '20:45', '22:15']
+    },
+    description: 'Premium AC Sleeper overnight service connecting Coimbatore to Madurai. Comfortable sleeper berths for a restful journey.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc011'
+  },
+  'tnstc012': {
+    id: 'tnstc012',
+    busNumber: 'TN 43 TH 1234',
+    route: {
+      id: 'route12',
+      name: 'Coimbatore - Thoothukudi',
+      stops: [
+        {
+          id: 'stop46',
+          name: 'Coimbatore Ukkadam',
+          arrivalTime: '19:00',
+          departureTime: '19:15',
+          location: { lat: 10.9925, lng: 76.9608 }
+        },
+        {
+          id: 'stop47',
+          name: 'Madurai',
+          arrivalTime: '23:30',
+          departureTime: '23:45',
+          location: { lat: 9.9252, lng: 78.1198 }
+        },
+        {
+          id: 'stop48',
+          name: 'Kovilpatti',
+          arrivalTime: '02:15',
+          departureTime: '02:20',
+          location: { lat: 9.1735, lng: 77.8706 }
+        },
+        {
+          id: 'stop49',
+          name: 'Thoothukudi New Bus Stand',
+          arrivalTime: '04:00',
+          departureTime: '04:15',
+          location: { lat: 8.7642, lng: 78.1348 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver12',
+      name: 'Subramani V',
+      contactNumber: '98765-12345',
+      experience: '15 years',
+      image: driverImages[11]
+    },
+    busType: 'Super Deluxe',
+    capacity: 50,
+    amenities: ['Push-back Seats', 'Blankets', 'Mobile Charging', 'Water Bottle'],
+    images: busImages.tnstc012,
+    schedule: {
+      weekday: ['19:15', '21:15'],
+      weekend: ['18:15', '20:15', '22:15']
+    },
+    description: 'Long-distance super deluxe service connecting Coimbatore to the port city of Thoothukudi. Overnight journey with comfortable seating.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc012'
+  },
+  'tnstc013': {
+    id: 'tnstc013',
+    busNumber: 'TN 43 BG 5678',
+    route: {
+      id: 'route13',
+      name: 'Coimbatore - Bangalore',
+      stops: [
+        {
+          id: 'stop50',
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '22:00',
+          departureTime: '22:15',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
+          id: 'stop51',
+          name: 'Mettupalayam',
+          arrivalTime: '23:15',
+          departureTime: '23:20',
+          location: { lat: 11.2990, lng: 76.9366 }
+        },
+        {
+          id: 'stop52',
+          name: 'Hosur',
+          arrivalTime: '03:30',
+          departureTime: '03:40',
+          location: { lat: 12.7409, lng: 77.8253 }
+        },
+        {
+          id: 'stop53',
+          name: 'Bangalore Kempegowda Bus Station',
+          arrivalTime: '05:30',
+          departureTime: '05:45',
+          location: { lat: 12.9770, lng: 77.5773 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver13',
+      name: 'Vijay Kumar',
+      contactNumber: '87654-56789',
+      experience: '13 years',
+      image: driverImages[12]
+    },
+    busType: 'AC Sleeper',
+    capacity: 38,
+    amenities: ['Air Conditioning', 'Sleeper Berths', 'Blankets', 'Mobile Charging', 'Water Bottle'],
+    images: busImages.tnstc013,
+    schedule: {
+      weekday: ['22:15', '23:30'],
+      weekend: ['21:15', '22:45', '00:15']
+    },
+    description: 'Premium AC Sleeper interstate service connecting Coimbatore to Bangalore. Overnight journey with comfortable sleeper berths.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc013'
+  },
+  'tnstc014': {
+    id: 'tnstc014',
+    busNumber: 'TN 43 V 9012',
+    route: {
+      id: 'route14',
+      name: 'Coimbatore - Valparai',
+      stops: [
+        {
+          id: 'stop54',
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '07:00',
+          departureTime: '07:15',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
+          id: 'stop55',
+          name: 'Pollachi',
+          arrivalTime: '08:30',
+          departureTime: '08:45',
+          location: { lat: 10.6586, lng: 77.0087 }
+        },
+        {
+          id: 'stop56',
+          name: 'Aliyar',
+          arrivalTime: '09:30',
+          departureTime: '09:35',
+          location: { lat: 10.4848, lng: 76.9685 }
+        },
+        {
+          id: 'stop57',
+          name: 'Valparai Bus Stand',
+          arrivalTime: '11:30',
+          departureTime: '11:45',
+          location: { lat: 10.3265, lng: 76.9510 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver14',
+      name: 'Ravi Shankar',
+      contactNumber: '76543-67890',
+      experience: '16 years',
+      image: driverImages[13]
+    },
+    busType: 'Hill Service',
+    capacity: 32,
+    amenities: ['Hill Drive Expertise', 'First Aid Kit', 'Oxygen Supply', 'Emergency Contact'],
+    images: busImages.tnstc014,
+    schedule: {
+      weekday: ['07:15', '11:15', '15:15'],
+      weekend: ['06:15', '09:15', '12:15', '15:15']
+    },
+    description: 'Special hill service connecting Coimbatore to the hill station of Valparai. Drivers are specially trained for the mountainous 40-hairpin bend route.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc014'
+  },
+  'tnstc015': {
+    id: 'tnstc015',
+    busNumber: 'TN 43 CB 3456',
+    route: {
+      id: 'route15',
+      name: 'Coimbatore City Circular',
+      stops: [
+        {
+          id: 'stop58',
+          name: 'Gandhipuram Central',
+          arrivalTime: '08:00',
+          departureTime: '08:10',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
+          id: 'stop59',
+          name: 'RS Puram',
+          arrivalTime: '08:25',
+          departureTime: '08:30',
+          location: { lat: 11.0082, lng: 76.9512 }
+        },
+        {
+          id: 'stop60',
+          name: 'Peelamedu',
+          arrivalTime: '08:50',
+          departureTime: '08:55',
+          location: { lat: 11.0236, lng: 77.0006 }
+        },
+        {
+          id: 'stop61',
+          name: 'Singanallur',
+          arrivalTime: '09:15',
+          departureTime: '09:20',
+          location: { lat: 11.0089, lng: 77.0320 }
+        },
+        {
+          id: 'stop62',
+          name: 'Ukkadam',
+          arrivalTime: '09:45',
+          departureTime: '09:50',
+          location: { lat: 10.9925, lng: 76.9608 }
+        },
+        {
+          id: 'stop63',
+          name: 'Gandhipuram Central',
+          arrivalTime: '10:10',
+          departureTime: '10:20',
+          location: { lat: 11.0168, lng: 76.9558 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver15',
+      name: 'Anand Kumar',
+      contactNumber: '65432-78901',
+      experience: '6 years',
+      image: driverImages[14]
+    },
+    busType: 'City Service',
+    capacity: 60,
+    amenities: ['Standing Space', 'Frequent Stops', 'City Map', 'Digital Display'],
+    images: busImages.tnstc015,
+    schedule: {
+      weekday: [
+        '06:20', '07:20', '08:20', '09:20', '10:20', '11:20', '12:20', 
+        '13:20', '14:20', '15:20', '16:20', '17:20', '18:20', '19:20', '20:20'
+      ],
+      weekend: [
+        '07:20', '08:20', '09:20', '10:20', '11:20', '12:20', 
+        '13:20', '14:20', '15:20', '16:20', '17:20', '18:20', '19:20'
+      ]
+    },
+    description: 'City circular service connecting all major areas of Coimbatore city. Frequent departures throughout the day.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc015'
+  }
+};
+
+// Helper function to get a list of all buses
+export const getAllBuses = (): Bus[] => {
+  return Object.values(mockBuses);
+};
+
+// Helper function to get a bus by ID
+export const getBusById = (id: string): Bus | undefined => {
+  return mockBuses[id];
+};
+
+// Helper function to get all bus IDs
+export const getAllBusIds = (): string[] => {
+  return Object.keys(mockBuses);
+};
