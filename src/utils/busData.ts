@@ -1045,3 +1045,115 @@ export const getBusById = (id: string): Bus | undefined => {
 export const getAllBusIds = (): string[] => {
   return Object.keys(mockBuses);
 };
+
+// Helper function to generate QR code URL for a bus
+export const generateQRCodeUrl = (busId: string): string => {
+  // Generate a QR code URL using Google Chart API
+  const qrCodeContent = `https://busqr-spotter.lovable.app/bus/${busId}`;
+  const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrCodeContent)}&chs=300x300&choe=UTF-8&chld=L|2`;
+  return qrCodeUrl;
+};
+
+// Helper function to scan QR code and get bus details
+export const scanQRCode = async (qrCodeValue: string): Promise<Bus> => {
+  // Extract bus ID from QR code value (URL)
+  const busIdMatch = qrCodeValue.match(/\/bus\/([^\/]+)$/);
+  
+  if (!busIdMatch || !busIdMatch[1]) {
+    throw new Error('Invalid QR code');
+  }
+  
+  const busId = busIdMatch[1];
+  const bus = getBusById(busId);
+  
+  if (!bus) {
+    throw new Error('Bus not found');
+  }
+  
+  return bus;
+};
+
+// Function to save recent scan to localStorage
+export const saveRecentScan = (busId: string): void => {
+  try {
+    const bus = getBusById(busId);
+    if (!bus) return;
+    
+    // Get existing recent scans from localStorage
+    const recentScansJson = localStorage.getItem('recentScans') || '[]';
+    const recentScans = JSON.parse(recentScansJson) as string[];
+    
+    // Add current bus ID to the beginning (if already exists, remove old instance first)
+    const updatedScans = [
+      busId,
+      ...recentScans.filter(id => id !== busId)
+    ].slice(0, 5); // Keep only the 5 most recent
+    
+    // Save back to localStorage
+    localStorage.setItem('recentScans', JSON.stringify(updatedScans));
+    
+    // Dispatch storage event for cross-component communication
+    window.dispatchEvent(new Event('storage'));
+  } catch (error) {
+    console.error('Error saving recent scan:', error);
+  }
+};
+
+// Function to get recent scans from localStorage
+export const getRecentScans = (): Bus[] => {
+  try {
+    const recentScansJson = localStorage.getItem('recentScans') || '[]';
+    const recentScans = JSON.parse(recentScansJson) as string[];
+    
+    return recentScans
+      .map(busId => getBusById(busId))
+      .filter((bus): bus is Bus => bus !== undefined);
+  } catch (error) {
+    console.error('Error getting recent scans:', error);
+    return [];
+  }
+};
+
+// Calculate fare between two stops
+export const calculateBusFare = (sourceStopId: string, destinationStopId: string, busId: string): number => {
+  const bus = getBusById(busId);
+  if (!bus) return 0;
+  
+  // Find the stops in the route
+  const route = bus.route;
+  const stops = route.stops;
+  
+  // Find indices of source and destination stops
+  const sourceIndex = stops.findIndex(stop => stop.id === sourceStopId);
+  const destIndex = stops.findIndex(stop => stop.id === destinationStopId);
+  
+  if (sourceIndex === -1 || destIndex === -1) return 0;
+  
+  // Simple fare calculation: ₹5 base + ₹10 per stop
+  const numberOfStops = Math.abs(destIndex - sourceIndex);
+  
+  // Calculate fare based on bus type
+  let fareMultiplier = 1;
+  switch (bus.busType) {
+    case 'AC Sleeper':
+      fareMultiplier = 2.5;
+      break;
+    case 'Super Deluxe':
+    case 'Ultra Deluxe':
+      fareMultiplier = 1.75;
+      break;
+    case 'Hill Service':
+      fareMultiplier = 2;
+      break;
+    case 'Express':
+      fareMultiplier = 1.5;
+      break;
+    case 'Pilgrimage Special':
+      fareMultiplier = 1.5;
+      break;
+    default:
+      fareMultiplier = 1;
+  }
+  
+  return Math.ceil((5 + (numberOfStops * 10)) * fareMultiplier);
+};
