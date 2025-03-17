@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { scanQRCode, saveRecentScan } from '../utils/busData';
 import { toast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
-import { Loader2, ScanLine, QrCode, Upload } from 'lucide-react';
+import { Loader2, ScanLine, QrCode, Upload, Bell } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const QRScanner = () => {
@@ -13,6 +13,59 @@ const QRScanner = () => {
   const [countdown, setCountdown] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<number | null>(null);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+
+  const handleNotificationPermission = async () => {
+    try {
+      if (!("Notification" in window)) {
+        toast({
+          title: "Notifications Not Supported",
+          description: "Your browser doesn't support notifications",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      const permission = await Notification.requestPermission();
+      
+      if (permission === "granted") {
+        setNotificationsEnabled(true);
+        toast({
+          title: "Notifications Enabled",
+          description: "You'll be notified when buses are arriving",
+        });
+        // Show a test notification
+        new Notification("Bus Notifications Enabled", {
+          body: "You'll receive alerts when your bus is arriving",
+          icon: '/favicon.ico'
+        });
+      } else {
+        toast({
+          title: "Notification Permission Denied",
+          description: "Please enable notifications to receive bus alerts",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error requesting notification permission:", error);
+      toast({
+        title: "Error",
+        description: "Failed to set up notifications",
+        variant: "destructive",
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Check if notifications are already enabled
+    if ("Notification" in window && Notification.permission === "granted") {
+      setNotificationsEnabled(true);
+    }
+    
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
 
   const handleScan = async () => {
     setIsScanning(true);
@@ -36,7 +89,11 @@ const QRScanner = () => {
   const simulateScan = async () => {
     try {
       // Randomly select one of our mock buses for demo
-      const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
+      const busIds = [
+        'tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005',
+        'tnstc006', 'tnstc007', 'tnstc008', 'tnstc009', 'tnstc010',
+        'tnstc011', 'tnstc012', 'tnstc013', 'tnstc014', 'tnstc015'
+      ];
       const randomBusId = busIds[Math.floor(Math.random() * busIds.length)];
       
       // Use the proper URL format for scanning (include /bus/ in the path)
@@ -75,7 +132,11 @@ const QRScanner = () => {
     setTimeout(() => {
       try {
         // Randomly select one of our mock buses for demo
-        const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
+        const busIds = [
+          'tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005',
+          'tnstc006', 'tnstc007', 'tnstc008', 'tnstc009', 'tnstc010',
+          'tnstc011', 'tnstc012', 'tnstc013', 'tnstc014', 'tnstc015'
+        ];
         const randomBusId = busIds[Math.floor(Math.random() * busIds.length)];
         
         saveRecentScan(randomBusId);
@@ -108,12 +169,6 @@ const QRScanner = () => {
   const triggerFileUpload = () => {
     fileInputRef.current?.click();
   };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, []);
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -169,6 +224,16 @@ const QRScanner = () => {
             onChange={handleFileUpload}
           />
         </div>
+        
+        <Button
+          onClick={handleNotificationPermission}
+          disabled={notificationsEnabled || isScanning}
+          variant="outline"
+          className="w-full transition-all duration-300 font-medium py-5 rounded-xl"
+        >
+          <Bell className="mr-2 h-4 w-4" /> 
+          {notificationsEnabled ? "Notifications Enabled" : "Enable Bus Arrival Notifications"}
+        </Button>
         
         <p className="text-sm text-center text-muted-foreground max-w-xs">
           Scan the QR code on any TNSTC bus to view complete information about its route, schedule, and driver details.

@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Bus, MapPin, Calendar, Clock, User, Phone, Shield, Info } from 'lucide-react';
+import { ChevronLeft, Bus, MapPin, Calendar, Clock, User, Phone, Shield, Info, IndianRupee } from 'lucide-react';
 import type { Bus as BusType } from '../utils/busData';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -10,6 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import RouteMap from './RouteMap';
 import BusSchedule from './BusSchedule';
+import BusFareCalculator from './BusFareCalculator';
 
 interface BusDetailsProps {
   bus: BusType;
@@ -105,9 +106,10 @@ const BusDetails = ({ bus }: BusDetailsProps) => {
         
         {/* Tabs for different sections */}
         <Tabs defaultValue="route" className="w-full">
-          <TabsList className="grid grid-cols-3 w-full">
+          <TabsList className="grid grid-cols-4 w-full">
             <TabsTrigger value="route">Route</TabsTrigger>
             <TabsTrigger value="schedule">Schedule</TabsTrigger>
+            <TabsTrigger value="fare">Fare</TabsTrigger>
             <TabsTrigger value="driver">Driver</TabsTrigger>
           </TabsList>
           
@@ -117,6 +119,10 @@ const BusDetails = ({ bus }: BusDetailsProps) => {
           
           <TabsContent value="schedule" className="space-y-4 pt-4">
             <BusSchedule schedule={bus.schedule} route={bus.route} />
+          </TabsContent>
+          
+          <TabsContent value="fare" className="space-y-4 pt-4">
+            <BusFareCalculator bus={bus} />
           </TabsContent>
           
           <TabsContent value="driver" className="space-y-4 pt-4">

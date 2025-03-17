@@ -1,4 +1,3 @@
-
 // Mock bus data for demonstration
 export interface BusStop {
   id: string;
@@ -71,6 +70,57 @@ const busImages = {
     'https://images.unsplash.com/photo-1556122071-e404cb8e06b3?q=80&w=2940&auto=format&fit=crop',
     'https://images.unsplash.com/photo-1582560486650-5329af87b090?q=80&w=2940&auto=format&fit=crop',
   ],
+  // Additional buses
+  tnstc006: [
+    'https://images.unsplash.com/photo-1556221538-1823f11b44e5?q=80&w=2787&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1581222427812-cf1e886d7ea6?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1506632035710-acd576ae6ef3?q=80&w=2834&auto=format&fit=crop',
+  ],
+  tnstc007: [
+    'https://images.unsplash.com/photo-1611873991627-324575da835c?q=80&w=2835&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1504233529578-6d46baba6d34?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1577777911184-2ef10188c098?q=80&w=2778&auto=format&fit=crop',
+  ],
+  tnstc008: [
+    'https://images.unsplash.com/photo-1612551891579-4d7e5ce6e829?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1590063304639-af6d4deb3a38?q=80&w=2840&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1506750413886-63eb41221b09?q=80&w=2787&auto=format&fit=crop',
+  ],
+  tnstc009: [
+    'https://images.unsplash.com/photo-1609763816663-a7742da1ce84?q=80&w=2787&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1605196560547-b2f7281f2fc1?q=80&w=2787&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1533467915241-eac02e856653?q=80&w=2835&auto=format&fit=crop',
+  ],
+  tnstc010: [
+    'https://images.unsplash.com/photo-1422360902398-0a91ff2c1a1f?q=80&w=2831&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1613836255000-931afb553540?q=80&w=2948&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1525876667071-b233860e9efa?q=80&w=2940&auto=format&fit=crop',
+  ],
+  tnstc011: [
+    'https://images.unsplash.com/photo-1560465382-aaee3ec09f5f?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1578599133798-ce27301e5e34?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1560735547-bb9481c58f66?q=80&w=2940&auto=format&fit=crop',
+  ],
+  tnstc012: [
+    'https://images.unsplash.com/photo-1611773953563-de5419c3bc41?q=80&w=2787&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?q=80&w=2873&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=2940&auto=format&fit=crop',
+  ],
+  tnstc013: [
+    'https://images.unsplash.com/photo-1553434146-bb9e5ad8c2aa?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1455620611406-966ca6889d80?q=80&w=2930&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1554423942-b32ae51772b7?q=80&w=2835&auto=format&fit=crop',
+  ],
+  tnstc014: [
+    'https://images.unsplash.com/photo-1578983033510-9a2c342d3b9c?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1590166809304-f2a0f1b5e05f?q=80&w=2835&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1586152478875-682758802400?q=80&w=2836&auto=format&fit=crop',
+  ],
+  tnstc015: [
+    'https://images.unsplash.com/photo-1613253831874-c586fd89ef72?q=80&w=2774&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1517439270744-8c9e4c4235f9?q=80&w=2940&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1620211582087-b11748d3a29d?q=80&w=2942&auto=format&fit=crop',
+  ],
 };
 
 // Different driver images
@@ -80,6 +130,16 @@ const driverImages = [
   'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2787&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=2787&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1504257432389-52343af06ae3?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=2866&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1583864697784-a0efc8379f70?q=80&w=2940&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2880&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=2940&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=2787&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1528892952291-009c663ce843?q=80&w=2880&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1530268729831-4b0b9e170218?q=80&w=2940&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop',
 ];
 
 // Create Tamilnadu bus data
@@ -375,78 +435,88 @@ export const mockBuses: Record<string, Bus> = {
     status: 'active',
     lastUpdated: new Date().toISOString(),
     qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc005'
-  }
-};
-
-// Function to get bus info by ID (simulates QR code scan)
-export const getBusById = (id: string): Bus | undefined => {
-  return mockBuses[id];
-};
-
-// Function to simulate scanning a QR code
-export const scanQRCode = (qrValue: string): Promise<Bus | undefined> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Extract bus ID from URL - supporting both /bus/id patterns
-      const parts = qrValue.split('/');
-      const busId = parts[parts.length - 1];
-      
-      const bus = getBusById(busId);
-      if (bus) {
-        resolve(bus);
-      } else {
-        reject(new Error('Invalid QR code or bus not found'));
-      }
-    }, 1500); // Simulate network delay
-  });
-};
-
-// Function to get recent scans from localStorage
-export const getRecentScans = (): Bus[] => {
-  try {
-    const scans = localStorage.getItem('recentScans');
-    if (scans) {
-      const scanIds = JSON.parse(scans) as string[];
-      return scanIds.map(id => mockBuses[id]).filter(bus => bus !== undefined) as Bus[];
-    }
-  } catch (error) {
-    console.error('Error retrieving recent scans:', error);
-  }
-  return [];
-};
-
-// Function to save a scan to localStorage
-export const saveRecentScan = (busId: string): void => {
-  try {
-    const scans = localStorage.getItem('recentScans');
-    let scanIds: string[] = [];
-    
-    if (scans) {
-      scanIds = JSON.parse(scans) as string[];
-    }
-    
-    // Remove the busId if it exists already (to move it to the front)
-    scanIds = scanIds.filter(id => id !== busId);
-    
-    // Add the new busId to the front
-    scanIds.unshift(busId);
-    
-    // Keep only the most recent 5 scans
-    scanIds = scanIds.slice(0, 5);
-    
-    localStorage.setItem('recentScans', JSON.stringify(scanIds));
-  } catch (error) {
-    console.error('Error saving recent scan:', error);
-  }
-};
-
-// Generate QR code URLs for each bus - using the correct URL format with /bus/ in the path
-export const generateQRCodeUrl = (busId: string): string => {
-  // Use our actual app URL for QR code generation with the correct format
-  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://busqr-spotter.lovable.app/bus/${busId}`)}`;
-};
-
-// Get all available buses
-export const getAllBuses = (): Bus[] => {
-  return Object.values(mockBuses);
-};
+  },
+  
+  // Adding 10 more buses focusing on Coimbatore routes
+  'tnstc006': {
+    id: 'tnstc006',
+    busNumber: 'TN 38 CB 1234',
+    route: {
+      id: 'route6',
+      name: 'Coimbatore - Tiruppur',
+      stops: [
+        {
+          id: 'stop22',
+          name: 'Coimbatore Gandhipuram',
+          arrivalTime: '08:30',
+          departureTime: '08:45',
+          location: { lat: 11.0168, lng: 76.9558 }
+        },
+        {
+          id: 'stop23',
+          name: 'Coimbatore Singanallur',
+          arrivalTime: '09:15',
+          departureTime: '09:20',
+          location: { lat: 11.0089, lng: 77.0320 }
+        },
+        {
+          id: 'stop24',
+          name: 'Avinashi',
+          arrivalTime: '10:00',
+          departureTime: '10:05',
+          location: { lat: 11.1734, lng: 77.2681 }
+        },
+        {
+          id: 'stop25',
+          name: 'Tiruppur Bus Stand',
+          arrivalTime: '10:40',
+          departureTime: '10:50',
+          location: { lat: 11.1075, lng: 77.3398 }
+        }
+      ]
+    },
+    driver: {
+      id: 'driver6',
+      name: 'Arumugam Selvan',
+      contactNumber: '98765-43210',
+      experience: '8 years',
+      image: driverImages[5]
+    },
+    busType: 'Express',
+    capacity: 52,
+    amenities: ['Comfortable Seating', 'Reading Light', 'Luggage Space'],
+    images: busImages.tnstc006,
+    schedule: {
+      weekday: ['06:45', '08:45', '10:45', '12:45', '14:45', '16:45', '18:45'],
+      weekend: ['07:45', '09:45', '11:45', '13:45', '15:45', '17:45', '19:45']
+    },
+    description: 'Regular express service connecting Coimbatore to the textile hub of Tiruppur. Frequent daily departures for commuters and business travelers.',
+    status: 'active',
+    lastUpdated: new Date().toISOString(),
+    qrCodeValue: 'https://busqr-spotter.lovable.app/bus/tnstc006'
+  },
+  'tnstc007': {
+    id: 'tnstc007',
+    busNumber: 'TN 43 CB 7890',
+    route: {
+      id: 'route7',
+      name: 'Coimbatore - Pollachi',
+      stops: [
+        {
+          id: 'stop26',
+          name: 'Coimbatore Central',
+          arrivalTime: '07:30',
+          departureTime: '07:45',
+          location: { lat: 11.0017, lng: 76.9643 }
+        },
+        {
+          id: 'stop27',
+          name: 'Sundarapuram',
+          arrivalTime: '08:15',
+          departureTime: '08:20',
+          location: { lat: 10.9793, lng: 76.9424 }
+        },
+        {
+          id: 'stop28',
+          name: 'Kinathukadavu',
+          arrivalTime: '08:50',

@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -42,7 +43,11 @@ const App = () => {
 
 // Component to handle direct bus ID URLs
 const BusIdRedirect = () => {
-  const busIds = ['tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005'];
+  const busIds = [
+    'tnstc001', 'tnstc002', 'tnstc003', 'tnstc004', 'tnstc005',
+    'tnstc006', 'tnstc007', 'tnstc008', 'tnstc009', 'tnstc010',
+    'tnstc011', 'tnstc012', 'tnstc013', 'tnstc014', 'tnstc015'
+  ];
   const path = window.location.pathname.slice(1); // Remove leading slash
   
   // If the path matches a bus ID, redirect to the bus details page
