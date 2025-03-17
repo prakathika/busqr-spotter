@@ -18,11 +18,16 @@ const BusInfo = () => {
       return;
     }
 
-    // Preload notification permission check
-    if ("Notification" in window) {
-      // Just accessing this will show the browser's native permission UI if needed
-      console.log("Notification permission:", Notification.permission);
-    }
+    // Request notification permission early
+    const checkNotificationPermission = () => {
+      if ("Notification" in window) {
+        // Log current permission without requesting it
+        console.log("Notification permission:", Notification.permission);
+      }
+    };
+    
+    // Check permission without showing prompt
+    checkNotificationPermission();
 
     const loadBusInfo = async () => {
       try {

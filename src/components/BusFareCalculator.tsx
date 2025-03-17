@@ -4,7 +4,7 @@ import { Bus as BusType, BusStop } from '../utils/busData';
 import { Button } from './ui/button';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Separator } from './ui/separator';
-import { MapPin, IndianRupee, Clock, Info } from 'lucide-react';
+import { MapPin, IndianRupee, Clock, Info, BellRing } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 
 interface BusFareCalculatorProps {
@@ -112,20 +112,39 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
         return;
       }
       
-      const permission = await Notification.requestPermission();
-      setNotificationPermission(permission);
+      let permission = notificationPermission;
+      
+      // If not already granted, request permission
+      if (permission !== "granted") {
+        console.log("Requesting notification permission...");
+        permission = await Notification.requestPermission();
+        setNotificationPermission(permission);
+      }
+      
+      console.log("Notification permission:", permission);
       
       if (permission === "granted") {
         setNotificationEnabled(true);
         
         // Send immediate confirmation notification
-        const confirmationNotification = new Notification(`Bus ${bus.busNumber} Tracking Activated`, {
-          body: `You'll be notified when bus ${bus.busNumber} (${bus.route.name}) is approaching.`,
-          icon: '/favicon.ico'
-        });
-        
-        // Schedule the arrival notification
-        scheduleNotification();
+        try {
+          console.log("Creating confirmation notification");
+          const confirmationNotification = new Notification(`Bus ${bus.busNumber} Tracking Activated`, {
+            body: `You'll be notified when bus ${bus.busNumber} (${bus.route.name}) is approaching.`,
+            icon: '/favicon.ico'
+          });
+          
+          // Add an onclick handler to the notification
+          confirmationNotification.onclick = () => {
+            window.focus();
+            confirmationNotification.close();
+          };
+          
+          // Schedule the arrival notification
+          scheduleNotification();
+        } catch (error) {
+          console.error("Error creating notification:", error);
+        }
         
         toast({
           title: "Notifications Enabled",
@@ -154,23 +173,28 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
     const originStopObj = bus.route.stops.find(stop => stop.id === originStop);
     if (!originStopObj) return;
     
+    console.log(`Scheduling notification for bus ${bus.busNumber} at ${originStopObj.name}`);
+    
     // For demo purposes, send notification after 5 seconds
     // In a real app, this would calculate actual arrival time
     setTimeout(() => {
+      console.log("Showing scheduled notification");
       if (Notification.permission === "granted") {
-        const notification = new Notification(`Bus ${bus.busNumber} Arriving Soon`, {
-          body: `The bus will arrive at ${originStopObj.name} in about 10 minutes.`,
-          icon: '/favicon.ico'
-        });
-        
-        notification.onclick = function() {
-          window.focus();
-          notification.close();
-        };
+        try {
+          const notification = new Notification(`Bus ${bus.busNumber} Arriving Soon`, {
+            body: `The bus will arrive at ${originStopObj.name} in about 10 minutes.`,
+            icon: '/favicon.ico'
+          });
+          
+          notification.onclick = function() {
+            window.focus();
+            notification.close();
+          };
+        } catch (error) {
+          console.error("Error showing notification:", error);
+        }
       }
     }, 5000); // 5 seconds for testing
-    
-    console.log(`Notification scheduled for bus ${bus.busNumber} at ${originStopObj.name}`);
   };
 
   return (
@@ -269,7 +293,7 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
           >
             {notificationEnabled ? (
               <span className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
+                <BellRing className="h-4 w-4 mr-2" />
                 Notification Enabled
               </span>
             ) : (

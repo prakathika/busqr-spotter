@@ -1,4 +1,3 @@
-
 // Mock bus data for demonstration
 export interface BusStop {
   id: string;
@@ -1050,7 +1049,8 @@ export const getAllBusIds = (): string[] => {
 export const generateQRCodeUrl = (busId: string): string => {
   // Generate a QR code URL using Google Chart API
   const qrCodeContent = `https://busqr-spotter.lovable.app/bus/${busId}`;
-  const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrCodeContent)}&chs=300x300&choe=UTF-8&chld=L|2`;
+  // Adding random parameter to prevent caching issues
+  const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrCodeContent)}&chs=300x300&choe=UTF-8&chld=L|2&t=${Date.now()}`;
   return qrCodeUrl;
 };
 

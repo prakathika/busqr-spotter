@@ -38,6 +38,10 @@ const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({ busId, busNumber }) => {
             src={qrCodeUrl}
             alt={`QR Code for ${busNumber}`}
             className="w-48 h-48 object-contain"
+            onError={(e) => {
+              console.error("QR Code image failed to load", e);
+              e.currentTarget.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M14.5 3.5v5h5"/></svg>';
+            }}
           />
         </div>
         <div className="text-center">
