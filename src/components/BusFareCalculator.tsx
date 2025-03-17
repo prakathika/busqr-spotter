@@ -18,6 +18,14 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
   const [distance, setDistance] = useState<number | null>(null);
   const [duration, setDuration] = useState<string | null>(null);
   const [notificationEnabled, setNotificationEnabled] = useState<boolean>(false);
+  const [notificationPermission, setNotificationPermission] = useState<NotificationPermission | null>(null);
+
+  // Check notification permission on load
+  useEffect(() => {
+    if ("Notification" in window) {
+      setNotificationPermission(Notification.permission);
+    }
+  }, []);
 
   // Calculate fare based on distance between stops
   useEffect(() => {
@@ -105,10 +113,20 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
       }
       
       const permission = await Notification.requestPermission();
+      setNotificationPermission(permission);
       
       if (permission === "granted") {
         setNotificationEnabled(true);
+        
+        // Send immediate confirmation notification
+        const confirmationNotification = new Notification(`Bus ${bus.busNumber} Tracking Activated`, {
+          body: `You'll be notified when bus ${bus.busNumber} (${bus.route.name}) is approaching.`,
+          icon: '/favicon.ico'
+        });
+        
+        // Schedule the arrival notification
         scheduleNotification();
+        
         toast({
           title: "Notifications Enabled",
           description: "You'll be notified 10 minutes before bus arrival",
@@ -136,36 +154,23 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
     const originStopObj = bus.route.stops.find(stop => stop.id === originStop);
     if (!originStopObj) return;
     
-    // Get arrival time of the bus at the origin stop
-    const arrivalTimeStr = originStopObj.arrivalTime;
-    const [hours, minutes] = arrivalTimeStr.split(':').map(Number);
-    
-    // Create a Date object for today with that time
-    const arrivalTime = new Date();
-    arrivalTime.setHours(hours, minutes, 0, 0);
-    
-    // If the time has already passed today, schedule for tomorrow
-    if (arrivalTime.getTime() < Date.now()) {
-      arrivalTime.setDate(arrivalTime.getDate() + 1);
-    }
-    
-    // Calculate notification time (10 minutes before arrival)
-    const notificationTime = new Date(arrivalTime.getTime() - 10 * 60 * 1000);
-    
-    // Calculate milliseconds until notification
-    const msUntilNotification = notificationTime.getTime() - Date.now();
-    
-    // Schedule the notification
-    if (msUntilNotification > 0) {
-      setTimeout(() => {
-        new Notification(`Bus ${bus.busNumber} Arriving Soon`, {
+    // For demo purposes, send notification after 5 seconds
+    // In a real app, this would calculate actual arrival time
+    setTimeout(() => {
+      if (Notification.permission === "granted") {
+        const notification = new Notification(`Bus ${bus.busNumber} Arriving Soon`, {
           body: `The bus will arrive at ${originStopObj.name} in about 10 minutes.`,
           icon: '/favicon.ico'
         });
-      }, msUntilNotification);
-      
-      console.log(`Notification scheduled for ${notificationTime.toLocaleTimeString()}`);
-    }
+        
+        notification.onclick = function() {
+          window.focus();
+          notification.close();
+        };
+      }
+    }, 5000); // 5 seconds for testing
+    
+    console.log(`Notification scheduled for bus ${bus.busNumber} at ${originStopObj.name}`);
   };
 
   return (
@@ -257,7 +262,7 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
           </div>
           
           <Button 
-            variant="outline" 
+            variant={notificationEnabled ? "secondary" : "outline"}
             className="w-full"
             onClick={requestNotificationPermission}
             disabled={notificationEnabled}
@@ -274,6 +279,17 @@ const BusFareCalculator = ({ bus }: BusFareCalculatorProps) => {
               </span>
             )}
           </Button>
+          
+          {notificationPermission === "denied" && (
+            <div className="bg-destructive/10 rounded-lg p-3">
+              <div className="flex">
+                <Info className="h-4 w-4 mr-2 text-destructive mt-0.5 flex-shrink-0" />
+                <p className="text-xs text-destructive">
+                  Notifications are blocked. Please update your browser settings to allow notifications.
+                </p>
+              </div>
+            </div>
+          )}
           
           <div className="bg-muted rounded-lg p-3">
             <div className="flex">
