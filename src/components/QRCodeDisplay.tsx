@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { generateQRCodeUrl } from '../utils/busData';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,10 @@ interface QRCodeDisplayProps {
 }
 
 const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({ busId, busNumber }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isImageError, setIsImageError] = useState(false);
+  
+  // Generate QR code URL with timestamp to prevent caching
   const qrCodeUrl = generateQRCodeUrl(busId);
   
   const handleDownload = () => {
@@ -21,6 +25,17 @@ const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({ busId, busNumber }) => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleImageLoad = () => {
+    console.log("QR code image loaded successfully for bus:", busNumber);
+    setIsImageLoaded(true);
+  };
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error("QR Code image failed to load for bus:", busNumber, e);
+    setIsImageError(true);
+    // Don't set source here, we'll handle it in the render
   };
 
   return (
@@ -34,15 +49,19 @@ const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({ busId, busNumber }) => {
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-4">
         <div className="border-2 border-muted p-2 rounded-lg bg-white">
-          <img 
-            src={qrCodeUrl}
-            alt={`QR Code for ${busNumber}`}
-            className="w-48 h-48 object-contain"
-            onError={(e) => {
-              console.error("QR Code image failed to load", e);
-              e.currentTarget.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M14.5 3.5v5h5"/></svg>';
-            }}
-          />
+          {isImageError ? (
+            <div className="w-48 h-48 flex items-center justify-center bg-gray-100 text-gray-500">
+              <QrCode size={80} />
+            </div>
+          ) : (
+            <img 
+              src={qrCodeUrl}
+              alt={`QR Code for ${busNumber}`}
+              className="w-48 h-48 object-contain"
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+          )}
         </div>
         <div className="text-center">
           <p className="font-medium">{busNumber}</p>

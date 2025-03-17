@@ -21,12 +21,21 @@ const BusInfo = () => {
     // Request notification permission early
     const checkNotificationPermission = () => {
       if ("Notification" in window) {
-        // Log current permission without requesting it
         console.log("Notification permission:", Notification.permission);
+        
+        // If permission is default (not decided yet), prompt the user
+        if (Notification.permission === "default") {
+          console.log("Requesting notification permission...");
+          Notification.requestPermission().then((permission) => {
+            console.log("Notification permission after request:", permission);
+          });
+        }
+      } else {
+        console.log("Notifications not supported in this browser");
       }
     };
     
-    // Check permission without showing prompt
+    // Check and potentially request permission
     checkNotificationPermission();
 
     const loadBusInfo = async () => {

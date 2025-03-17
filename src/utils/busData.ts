@@ -1049,27 +1049,33 @@ export const getAllBusIds = (): string[] => {
 export const generateQRCodeUrl = (busId: string): string => {
   // Generate a QR code URL using Google Chart API
   const qrCodeContent = `https://busqr-spotter.lovable.app/bus/${busId}`;
-  // Adding random parameter to prevent caching issues
-  const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(qrCodeContent)}&chs=300x300&choe=UTF-8&chld=L|2&t=${Date.now()}`;
+  // Using a more reliable QR code API with larger size and error correction
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrCodeContent)}&size=300x300&margin=10&ecc=H&t=${Date.now()}`;
+  console.log("Generated QR code URL:", qrCodeUrl);
   return qrCodeUrl;
 };
 
 // Helper function to scan QR code and get bus details
 export const scanQRCode = async (qrCodeValue: string): Promise<Bus> => {
+  console.log("Scanning QR code with value:", qrCodeValue);
   // Extract bus ID from QR code value (URL)
   const busIdMatch = qrCodeValue.match(/\/bus\/([^\/]+)$/);
   
   if (!busIdMatch || !busIdMatch[1]) {
+    console.error("Invalid QR code format:", qrCodeValue);
     throw new Error('Invalid QR code');
   }
   
   const busId = busIdMatch[1];
+  console.log("Extracted bus ID:", busId);
   const bus = getBusById(busId);
   
   if (!bus) {
+    console.error("Bus not found with ID:", busId);
     throw new Error('Bus not found');
   }
   
+  console.log("Successfully found bus:", bus.busNumber);
   return bus;
 };
 
